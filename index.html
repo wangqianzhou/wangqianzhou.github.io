@@ -2,155 +2,13 @@
 <head>
   <meta charset="utf-8">
   <title>预加载頁面</title>
-  <link rel="manifest" href="./manifest.json">
 </head>
 
 <body>
-  <div id="js-subscription-details">这是活动预加载页面</id>
+  <div id="id">这是测试页面</id>
 </body>
 <script>
-  /**
-   * WA 日志临时模块
-   * Examples:
-   *  // 约定 service work 统计日志的事件名称为 sw_resource
-   *  // 其他参数以简单对象的形式传入，如链接 url, 加载耗时 spending, 缓存是否命中 match 等
-   *  this.UEM.wa.event('sw_resource', { url: 'http://img.uc.cn/foo.png', spending: 50 })
-   */
-  (function(root, factory) {
-    'use strict'
-    if (typeof exports === 'object') {
-      module.exports = factory()
-    }
-    root.UEM = root.UEM || {}
-    root.UEM.wa = factory()
-  }(this, function() {
-    var SESSION_ID_LENGTH = 24
-    var OMELETTE_SESSION_ID_LENGTH = 36
 
-    var WA_HOST_NAME = '//track.uc.cn'
-    var APPID = '28b0f62d82d5'
-
-    var fetch = function(url) {
-      var img = new Image()
-      img.src = url
-    }
-
-    /**
-     * 事件日志接口
-     * @param {String} name 事件名称
-     * @param {Object} params 日志参数
-     */
-    var logEvent = function(name, params) {
-      var sessionId = getSessionId()
-      var keys = {
-        lt: 'event',
-        appid: APPID,
-        sessionid: sessionId,
-        visitorid: sessionId,
-        platform: 'SW',
-        e_c: 'act',
-        scene: 'v3',
-        e_a: encodeURIComponent(name),
-        event: encodeURIComponent(name),
-        __t: +new Date(),
-        uc_param_str: 'dsdnfrpfbivesscpgimibtbmnijblauputogpintnwch'
-      }
-
-      var target = parseQuery(WA_HOST_NAME + '/collect', assign(params || {}, keys))
-      // console.log("UCTrace:" + target);
-      //return fetch(target)
-    }
-
-    /**
-     * 拼接链接
-     */
-    function parseQuery(url, params) {
-      var query = []
-
-      each(params, function(val, key) {
-        query.push(key + '=' + encodeURIComponent(val))
-      })
-
-      return url + '?' + query.join('&')
-    }
-
-    /**
-     * 获取用户唯一标识
-     */
-    function getSessionId() {
-      var key = 'UEM_SESSION_ID'
-
-      try {
-        var sessionId = window.localStorage.getItem(key)
-        if (sessionId && (sessionId.length === SESSION_ID_LENGTH || sessionId.length === OMELETTE_SESSION_ID_LENGTH)) {
-          return sessionId
-        } else {
-          sessionId = generateSessionId()
-          window.localStorage.setItem(key, sessionId)
-          return sessionId
-        }
-      } catch (e) {
-        return ''
-      }
-    }
-
-    /**
-     * 生成用户唯一标识
-     */
-    function generateSessionId() {
-      var sessionId = (+new Date() + '').substr(2, 10)
-      while (sessionId.length < SESSION_ID_LENGTH) {
-        sessionId += parseInt(Math.random() * 10, 10)
-      }
-      return sessionId
-    }
-
-    function assign() {
-      var obj = {}
-      var i = arguments.length
-      while (i--) {
-        for (var prop in arguments[i]) {
-          if (arguments[i].hasOwnProperty(prop)) {
-            obj[prop.toLowerCase()] = arguments[i][prop]
-          }
-        }
-      }
-      return obj
-    }
-
-    function each(obj, iterator) {
-      if (typeof obj !== 'object') return
-
-      var i
-      for (i in obj) {
-        if (obj.hasOwnProperty(i)) {
-          if (iterator(obj[i], i, obj) === false) {
-            return
-          }
-        }
-      }
-    }
-
-    return {
-      event: logEvent
-    }
-  }))
-
-  function UCTrace(key, stat, value) {
-    console.log(key, '=', stat, ':', value);
-    self.UEM.wa.event(
-      'sw_resource', // 约定 sw 打资源日志的事件名称为 sw_resource
-      { url: 'http://img.uc.cn/foo.png', spending: 50, key: key, stat: stat, value: value } // 其他参数，如链接，耗时，是否成功
-    )
-  }
-
-  UCTrace("act_load", "ok", "ok");
-
-  function updateSubscription(swReg, subscription) {
-    if ('UCCDPush' in window) {
-      window.UCCDPush.onRegistered(swReg.scope, subscription.applicationId);
-    }
-  }
 
   function getRegistration() {
     return new Promise(function(resolve, reject) {
@@ -172,14 +30,10 @@
   }
 
 
-  // Helper function which returns a promise which resolves once the service worker registration
-  // is past the "installing" state.
   function waitUntilInstalled(registration) {
     return new Promise(function(resolve, reject) {
       if (registration.installing) {
-        // If the current registration represents the "installing" service worker, then wait
-        // until the installation step (during which the resources are pre-fetched) completes
-        // to display the file list.
+
         registration.installing.addEventListener('statechange', function(e) {
           if (e.target.state === 'installed') {
             resolve(registration);
@@ -188,9 +42,7 @@
           }
         });
       } else {
-        // Otherwise, if this isn't the "installing" service worker, then installation must have been
-        // completed during a previous visit to this page, and the resources are already pre-fetched.
-        // So we can show the list of files right away.
+
         resolve(registration);
       }
     });
@@ -218,14 +70,6 @@
     return new Promise(function(resolve, reject) {
       if ('controller' in navigator.serviceWorker) {
         resolve(registration);
-
-        // uc not supported
-//        navigator.serviceWorker.onmessage = function(event) {
-//          var data = event.data;
-//          if (data.command === "broadcastOnRequest") {
-//            console.log("Broadcasted message from the ServiceWorker: ", data.message);
-//          }
-//        };
 
         if (navigator.serviceWorker.controller) {
             navigator.serviceWorker.controller.postMessage({"command": "clear_cache"});
