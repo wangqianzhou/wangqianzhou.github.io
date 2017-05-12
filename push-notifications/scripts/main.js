@@ -131,7 +131,7 @@ function initialiseUI() {
   swRegistration.pushManager.getSubscription()
   .then(function(subscription) {
     isSubscribed = !(subscription === null);
-
+    console.log('getSubscription callback');
     updateSubscriptionOnServer(subscription);
 
     if (isSubscribed) {
@@ -141,6 +141,8 @@ function initialiseUI() {
     }
 
     updateBtn();
+  }).catch(function(error) {
+    console.error('Service Worker Error', error);
   });
 }
 
