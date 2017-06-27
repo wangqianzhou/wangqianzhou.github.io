@@ -1,15 +1,48 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>预加载頁面</title>
+  <link href='style.css' rel='stylesheet' type='text/css'>
+  <title>ServiceWorker</title>
 </head>
 
 <body>
-  <div id="id">这是测试页面</id>
-  <input type="file" accept="audio/*;capture=microphone"> 
+  <button  class="action-button shadow animate blue"   onclick="on_register_click();"   >Register   </button>
+  <button  class="action-button shadow animate red"    onclick="on_unregister_click();" >UnRegister </button>
+  <button  class="action-button shadow animate green"  onclick="on_push_click();"       >Push       </button>
+  <button  class="action-button shadow animate yellow" onclick="on_other_click();"      >Other      </button>
 </body>
 <script>
 
+  function on_register_click()
+  {
+    if ('serviceWorker' in navigator) {
+
+      getRegistration()
+      .then(waitUntilInstalled)
+      .then(waitUntilActivated)
+      .then(syncIfNeeded)
+      .then(subscribeIfNeeded)
+      .then(notifyIfNeeded)
+      .catch(function(error) {
+        console.log("Service worker failed in: ", error);
+      });
+    }
+  }
+
+  function on_unregister_click()
+  {
+    getRegistration().then(function(sw){ sw.unregister(); })
+  }
+
+  function on_push_click()
+  {
+    alert('on_push_click');
+  }
+
+  function on_other_click()
+  {
+    alert('on_other_click');
+  }
 
   function getRegistration() {
     return new Promise(function(resolve, reject) {
@@ -19,7 +52,7 @@
           resolve(existsReg);
         } else {
           console.log("No Exists Service Worker detected.");
-          navigator.serviceWorker.register('/act/sw.js', {scope:"/act/"}).then(function(newReg) {
+          navigator.serviceWorker.register('sw.js', {}).then(function(newReg) {
             console.log("New Service Worker created.");
             resolve(newReg);
           }).catch(function(error){
@@ -108,17 +141,5 @@
     });
   }
 
-  if ('serviceWorker' in navigator) {
-
-    getRegistration()
-    .then(waitUntilInstalled)
-    .then(waitUntilActivated)
-    .then(syncIfNeeded)
-    .then(subscribeIfNeeded)
-    .then(notifyIfNeeded)
-    .catch(function(error) {
-      console.log("Service worker failed in: ", error);
-    });
-  }
 </script>
 </html>
