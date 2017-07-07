@@ -1,8 +1,8 @@
-#ServiceWorker
+# ServiceWorker
 ## navigator.serviceworker
 [Namespace for page-side ServiceWorker API](https://jakearchibald.github.io/isserviceworkerready/demos/navigator.serviceWorker/)
 
-##register-/-unregister
+## register-/-unregister
 [Register for a SW and get a registration instance back, unregister undoes](https://jakearchibald.github.io/isserviceworkerready/demos/registerunregister/)
 
 ## postmessage-to-&-from-worker
