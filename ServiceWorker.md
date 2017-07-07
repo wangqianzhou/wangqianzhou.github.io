@@ -1,5 +1,3 @@
-#ServiceWorker
-
 ##navigator.serviceworker
 [Namespace for page-side ServiceWorker API](https://jakearchibald.github.io/isserviceworkerready/demos/navigator.serviceWorker/)
 
