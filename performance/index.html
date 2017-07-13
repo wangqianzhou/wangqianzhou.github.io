@@ -44,7 +44,6 @@ function format_url_to_absolute(url)
 function sendXhr(xhr) {
   xhr.timeout = 500;
   var url = format_url_to_absolute('./x') +'_' +targetNumConcurrentRequests + '?' + Date.now().toString()
-  console.log(url);
   xhr.open('GET', url, true);
   xhr.send();
 }
