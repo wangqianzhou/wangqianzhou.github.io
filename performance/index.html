@@ -43,7 +43,7 @@ function format_url_to_absolute(url)
   
 function sendXhr(xhr) {
   xhr.timeout = 500;
-  var url = format_url_to_absolute('./x') + Date.now().toString()
+  var url = format_url_to_absolute('./x') +'_' +targetNumConcurrentRequests + '?' + Date.now().toString()
   console.log(url);
   xhr.open('GET', url, true);
   xhr.send();
@@ -73,12 +73,10 @@ function timedRequestCompleted(event) {
   responseTimes.push(endTime - event.target.startTime);
 
   numTimedRequestsFinished++;
-  console.log('timedRequestCompleted', event);
   next();
 }
 
 function timedRequestFailed(event) {
-  console.log('timedRequestFailed', event);
   numTimedRequestsFinished++;
   next();
 }
@@ -182,7 +180,6 @@ function setUpFrame(path) {
       };
 
       frame.src = path;
-      console.log(frame.src);
       document.body.appendChild(frame);
     });
   };
@@ -229,7 +226,7 @@ function cleanUp(frame) {
 function complete() {
   console.log('complete');
   console.log(results);
-
+  console.log(JSON.stringify(obj));
   done = true;
 }
 
