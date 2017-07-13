@@ -36,6 +36,7 @@ function start(options) {
 
 function sendXhr(xhr) {
   xhr.timeout = 500;
+  console.log(window.location.href);
   xhr.open('GET', '/request-latency/x', true);
   xhr.send();
 }
