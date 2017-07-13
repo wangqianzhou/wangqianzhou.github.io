@@ -36,7 +36,7 @@ function start(options) {
 
 function sendXhr(xhr) {
   xhr.timeout = 500;
-  xhr.open('GET', '/request-latency/x', true);
+  xhr.open('GET', '/performance/request-latency/x', true);
   xhr.send();
 }
 
@@ -226,11 +226,11 @@ done = false;
 results = { };
 
 var workerScriptPath = 'request-latency-worker.js';
-var workerOptions = { scope: '/request-latency/' };
+var workerOptions = { scope: './request-latency/' };
 
 navigator.serviceWorker.register(workerScriptPath, workerOptions)
   .then(waitUntilActive)
-  .then(setUpFrame('/request-latency/blank'))
+  .then(setUpFrame('./request-latency/blank'))
   .then(testRequestLatency(1))
   .then(testRequestLatency(10))
   .then(testRequestLatency(100))
