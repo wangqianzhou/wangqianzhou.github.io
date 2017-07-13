@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<title>Service Worker Performance Tests</title>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Service Worker Performance Tests</title>
+</head>
 <template id="childScript">
 <script>
 window.onmessage = function(event) {
@@ -232,3 +236,4 @@ navigator.serviceWorker.register(workerScriptPath, workerOptions)
   .then(cleanUp)
   .then(complete);
 </script>
+</html>
