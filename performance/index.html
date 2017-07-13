@@ -226,8 +226,34 @@ function cleanUp(frame) {
 function complete() {
   console.log('complete');
   console.log(results);
-  console.log(JSON.stringify(obj));
+  showResult(results);
   done = true;
+}
+
+function showResult(test_result) { 
+
+  var format_result = formatTestResult(test_result);
+  getResultDisplayElement().innerHTML = result;
+}
+
+function formatTestResult(test_result) {
+  var result = '';
+  for (var key in test_result) {
+    if (Object.prototype.hasOwnProperty.call(test_result, key)) {
+        var val = obj[key];
+        result = result + key + JSON.stringify(val) + '\n';
+    }
+  }
+  return result;
+}
+
+function getResultDisplayElement() {
+  var displayElement = document.getElementById('result_display');
+  if (!displayElement) {
+    displayElement =  document.createElement("h1");
+    displayElement.id = 'result_display';
+    document.body.appendChild(el);    
+  };
 }
 
 done = false;
