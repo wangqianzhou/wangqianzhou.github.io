@@ -33,11 +33,19 @@ function start(options) {
 
   timedRequest();
 }
-
+  
+function format_url_to_absolute(url) 
+{
+	var a = document.createElement('a');
+	a.href = url;
+	return a.href;
+}
+  
 function sendXhr(xhr) {
   xhr.timeout = 500;
-  console.log(window.location.href);
-  xhr.open('GET', 'performance/request-latency/x', true);
+  var url = format_url_to_absolute('./x')
+  console.log(url);
+  xhr.open('GET', url, true);
   xhr.send();
 }
 
