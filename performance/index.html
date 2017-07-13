@@ -240,7 +240,7 @@ function formatTestResult(test_result) {
   var result = '';
   for (var key in test_result) {
     if (Object.prototype.hasOwnProperty.call(test_result, key)) {
-        var val = obj[key];
+        var val = test_result[key];
         result = result + key + JSON.stringify(val) + '\n';
     }
   }
