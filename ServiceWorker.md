@@ -53,3 +53,6 @@ Allow a next version to be in waiting & take over when appropriate.
 
 ## Background Sync
 [Background Sync](https://jakearchibald.github.io/isserviceworkerready/demos/sync/)
+
+## 性能压力测试
+[压力测试链接](https://wangqianzhou.github.io/performance/index.html)
