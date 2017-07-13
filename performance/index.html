@@ -241,7 +241,7 @@ function formatTestResult(test_result) {
   for (var key in test_result) {
     if (Object.prototype.hasOwnProperty.call(test_result, key)) {
         var val = test_result[key];
-        result = result + key + JSON.stringify(val) + '\n';
+        result = result + key + ' ' + val['value'] + ' ' + val['units'] + '\n';
     }
   }
   return result;
