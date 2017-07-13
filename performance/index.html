@@ -250,9 +250,9 @@ function formatTestResult(test_result) {
 function getResultDisplayElement() {
   var displayElement = document.getElementById('result_display');
   if (!displayElement) {
-    displayElement =  document.createElement("h1");
+    displayElement =  document.createElement("h3");
     displayElement.id = 'result_display';
-    document.body.appendChild(el);    
+    document.body.appendChild(displayElement);    
   };
 }
 
