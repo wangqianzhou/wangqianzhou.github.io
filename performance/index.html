@@ -73,10 +73,12 @@ function timedRequestCompleted(event) {
   responseTimes.push(endTime - event.target.startTime);
 
   numTimedRequestsFinished++;
+  console.log('timedRequestCompleted', event);
   next();
 }
 
 function timedRequestFailed(event) {
+  console.log('timedRequestFailed', event);
   numTimedRequestsFinished++;
   next();
 }
