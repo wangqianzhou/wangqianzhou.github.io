@@ -241,7 +241,7 @@ function formatTestResult(test_result) {
   for (var key in test_result) {
     if (Object.prototype.hasOwnProperty.call(test_result, key)) {
         var val = test_result[key];
-        result = result + key + ' ' + val['value'] + ' ' + val['units'] + '\n';
+        result = result + key + ' ' + val['value'].toFixed(2) + ' ' + val['units'] + '\n';
     }
   }
   return result;
@@ -250,7 +250,7 @@ function formatTestResult(test_result) {
 function getResultDisplayElement() {
   var displayElement = document.getElementById('result_display');
   if (!displayElement) {
-    displayElement =  document.createElement("h3");
+    displayElement =  document.createElement("span");
     displayElement.id = 'result_display';
     document.body.appendChild(displayElement);    
   };
