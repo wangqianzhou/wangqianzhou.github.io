@@ -43,7 +43,7 @@ function format_url_to_absolute(url)
   
 function sendXhr(xhr) {
   xhr.timeout = 500;
-  var url = format_url_to_absolute('./x')
+  var url = format_url_to_absolute('./x') + new Date.getTime().toString();
   console.log(url);
   xhr.open('GET', url, true);
   xhr.send();
