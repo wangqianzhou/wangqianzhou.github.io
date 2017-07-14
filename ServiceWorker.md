@@ -56,3 +56,32 @@ Allow a next version to be in waiting & take over when appropriate.
 
 ## 性能压力测试
 [压力测试链接](https://wangqianzhou.github.io/performance/index.html)
+
+
+## Links
+https://m.douban.com
+https://mdn.github.io/sw-test
+https://jakearchibald.github.io/isserviceworkerready/demos/navigator.serviceWorker/
+https://jakearchibald.github.io/isserviceworkerready/demos/registerunregister/
+https://jakearchibald.github.io/isserviceworkerready/demos/postMessage/
+https://jakearchibald.github.io/isserviceworkerready/demos/fetchevent/
+https://jakearchibald.github.io/isserviceworkerready/demos/installactivate/
+https://jakearchibald.github.io/isserviceworkerready/demos/claim/
+https://jakearchibald.github.io/isserviceworkerready/demos/globalapis/
+https://jakearchibald.github.io/isserviceworkerready/demos/fetch/
+https://wangqianzhou.github.io/performance/index.html
+
+https://googlechrome.github.io/samples/service-worker/basic/index.html
+https://googlechrome.github.io/samples/service-worker/registration/index.html
+https://googlechrome.github.io/samples/service-worker/registration-events/index.html
+https://googlechrome.github.io/samples/service-worker/prefetch/index.html
+https://googlechrome.github.io/samples/service-worker/selective-caching/index.html
+https://googlechrome.github.io/samples/service-worker/read-through-caching/index.html
+https://googlechrome.github.io/samples/service-worker/read-through-caching/index.html
+https://googlechrome.github.io/samples/service-worker/offline-analytics/index.html
+https://googlechrome.github.io/samples/service-worker/fallback-response/index.html
+https://googlechrome.github.io/samples/service-worker/mock-responses/index.html
+https://googlechrome.github.io/samples/service-worker/post-message/index.html
+https://googlechrome.github.io/samples/service-worker/custom-offline-page/index.html
+
+https://cartoon.uc.cn/
