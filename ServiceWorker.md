@@ -71,17 +71,5 @@ https://jakearchibald.github.io/isserviceworkerready/demos/globalapis/
 https://jakearchibald.github.io/isserviceworkerready/demos/fetch/
 https://wangqianzhou.github.io/performance/index.html
 
-https://googlechrome.github.io/samples/service-worker/basic/index.html
-https://googlechrome.github.io/samples/service-worker/registration/index.html
-https://googlechrome.github.io/samples/service-worker/registration-events/index.html
-https://googlechrome.github.io/samples/service-worker/prefetch/index.html
-https://googlechrome.github.io/samples/service-worker/selective-caching/index.html
-https://googlechrome.github.io/samples/service-worker/read-through-caching/index.html
-https://googlechrome.github.io/samples/service-worker/read-through-caching/index.html
-https://googlechrome.github.io/samples/service-worker/offline-analytics/index.html
-https://googlechrome.github.io/samples/service-worker/fallback-response/index.html
-https://googlechrome.github.io/samples/service-worker/mock-responses/index.html
-https://googlechrome.github.io/samples/service-worker/post-message/index.html
-https://googlechrome.github.io/samples/service-worker/custom-offline-page/index.html
 
 https://cartoon.uc.cn/
