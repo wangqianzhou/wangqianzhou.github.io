@@ -188,6 +188,8 @@ if (this.fetch) {
 ## 性能压力测试
 [压力测试链接](https://wangqianzhou.github.io/performance/index.html)
 
+## Google Demos
+https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker
 
 ## Links
 https://m.douban.com
