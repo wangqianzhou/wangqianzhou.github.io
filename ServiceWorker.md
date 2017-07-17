@@ -1,33 +1,126 @@
 # ServiceWorker
 ## navigator.serviceworker
+~~~
+navigator.serviceWorker, [object ServiceWorkerContainer] //navigator.serviceWorker, [object object]
+~~~
+
 [Namespace for page-side ServiceWorker API](https://jakearchibald.github.io/isserviceworkerready/demos/navigator.serviceWorker/)
 
-## register-/-unregister
+
+## register/unregister/ready
+注册、取消注册，ready测试
+
+~~~
+ready, [object Promise]
+
+
+Registered!, [object ServiceWorkerRegistration]
+ready resolved
+Unregistered
+~~~
+
 [Register for a SW and get a registration instance back, unregister undoes](https://jakearchibald.github.io/isserviceworkerready/demos/registerunregister/)
 
 ## postmessage-to-&-from-worker
+
+~~~
+Registered!, [object ServiceWorkerRegistration]
+Got reply from serviceworker via navigator.serviceWorker, Woop!
+~~~
+
 [postMessage](https://jakearchibald.github.io/isserviceworkerready/demos/postMessage/)
 
-## FetchEvent
+## FetchEvent/FetchEvent.request/FetchEvent.respondwith()
+~~~
+Hello world
+~~~
+
+~~~
+console.log("SW startup");
+
+this.onfetch = function(event) {
+  console.log("Fetch event", event);
+  console.log(".request", event.request);
+  console.log(".respondWith", event.respondWith);
+  console.log(".default", event.default);
+
+  if (event.respondWith) {
+    event.respondWith(new Response(new Blob(["Hello <b>world</b>"], {type : 'text/html'}), {
+      headers: {"Content-Type": "text/html"}
+    }));
+  }
+};
+~~~
+
 [FetchEvent](https://jakearchibald.github.io/isserviceworkerready/demos/fetchevent/)
 
-## FetchEvent.request
-[FetchEvent.request](https://jakearchibald.github.io/isserviceworkerready/demos/fetchevent/)
 
-## FetchEvent.respondwith()
-[respondWith](https://jakearchibald.github.io/isserviceworkerready/demos/fetchevent/)
+## InstallEvent/skipWaiting()/ActiveEvent
+~~~
+Registered!, [object ServiceWorkerRegistration]
+~~~
 
-## InstallEvent
+~~~
+console.log("SW startup");
+
+this.oninstall = function(event) {
+  console.log("Install event", event);
+  console.log(".replace", event.replace);
+  console.log("self.skipWaiting", self.skipWaiting);
+
+  if (event.waitUntil) {
+    console.log("Testing waitUntil:");
+    event.waitUntil(new Promise(function(resolve) {
+      setTimeout(function() {
+        console.log("This should appear before activate");
+        resolve();
+      }, 3000);
+    }));
+  }
+};
+
+this.onactivate = function(event) {
+  console.log("Activate event", event);
+  console.log(".waitUntil", event.waitUntil);
+};
+~~~
+
 [InstallEvent](https://jakearchibald.github.io/isserviceworkerready/demos/installactivate/)
 
-## skipWaiting()
-[skipWaiting](https://jakearchibald.github.io/isserviceworkerready/demos/installactivate/)
-
-## ActiveEvent
-[ActiveEvent](https://jakearchibald.github.io/isserviceworkerready/demos/installactivate/)
-
-
 ## Clients.claim()
+~~~
+Page already claimed
+
+
+From the ServiceWorker:, {"This came from":"The ServiceWorker"}
+~~~
+
+~~~
+self.onactivate = function() {
+  clients.claim();
+};
+
+self.onmessage = function(event) {
+  if (event.data == 'claim') {
+    clients.claim();
+  }
+};
+
+
+self.onfetch = function(event) {
+  var url = new URL(event.request.url);
+  if (url.pathname.endsWith('/404.json')) {
+    event.respondWith(
+      new Response('{"This came from": "The ServiceWorker"}', {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+    );
+  }
+};
+
+~~~
 [Clients.claim()](https://jakearchibald.github.io/isserviceworkerready/demos/claim/)
 
 ## UpdateCheck
@@ -36,20 +129,58 @@ Browser checks for SW updates after navigation. *Not Demo*, [update algorithm](h
 ## ServiceWorker LifeCycle
 Allow a next version to be in waiting & take over when appropriate.
 
-## Request
+## Request/Response/Caches
+~~~
+console.log("SW startup");
+console.log("Request", this.Request);
+console.log("Response", this.Response);
+console.log("fetch", this.fetch);
+console.log("Cache", this.Cache);
+console.log("caches", this.caches);
+console.log("getAll", this.getAll); //undefined
+~~~
 [Request](https://jakearchibald.github.io/isserviceworkerready/demos/globalapis/)
 
-## Response
-[Response](https://jakearchibald.github.io/isserviceworkerready/demos/globalapis/)
 
 ## Fetch
+~~~
+console.log("fetch", this.fetch);
+
+if (this.fetch) {
+  console.log("Attempting fetch");
+  fetch('./').then(function(res) {
+    console.log("Response", res);
+    return res.text();
+  }).then(function(text) {
+    console.log("body", text);
+  }).catch(function(err) {
+    console.error(err);
+  }).then(function() {
+    console.log("Attempting JSON fetch");
+    return fetch('./json.json');
+  }).then(function(res) {
+    console.log("Response", res);
+    return res.json();
+  }).then(function(data) {
+    console.log("body", data);
+  }).catch(function(err) {
+    console.error(err);
+  }).then(function() {
+    console.log("Attempting fetch outside of scope");
+    return fetch('/');
+  }).then(function(res) {
+    console.log("Response", res);
+    return res.text();
+  }).then(function(text) {
+    console.log("body", text);
+  }).catch(function(err) {
+    console.error(err);
+  });
+}
+~~~
 [Fetch](https://jakearchibald.github.io/isserviceworkerready/demos/fetch/)
 
-## Caches
-[Caches](https://jakearchibald.github.io/isserviceworkerready/demos/globalapis/)
 
-## ServiceWorker.ready
-[ServiceWorker.ready](https://jakearchibald.github.io/isserviceworkerready/demos/registerunregister/)
 
 ## Background Sync
 [Background Sync](https://jakearchibald.github.io/isserviceworkerready/demos/sync/)
