@@ -1,0 +1,24 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <link href='style.css' rel='stylesheet' type='text/css'>
+  <title>ServiceWorker</title>
+</head>
+
+<body>
+  <button  class="action-button shadow animate blue"   onclick="();"   >Click Me   </button>
+</body>
+<script>
+
+  function on_click_me()
+  {
+    var worker = new Worker('./wk.js');
+
+    worker.postMessage({'key' : 'value'});
+  }
+
+
+
+</script>
+</html>
