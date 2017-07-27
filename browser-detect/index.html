@@ -2,15 +2,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <link href='browser.js' type='text/javascript'>
-  <title>ServiceWorker</title>
+  <title>BrowserDetector</title>
 </head>
 <body>
   <h2  id='result_display_elmt'  ></h2>
 </body>
 <script>
 
-var support_query_command = document.queryCommandSupported && document.queryCommandSupported();
+var support_query_command = document.queryCommandSupported;
 var support_indexedDB = window.indexedDB;
 
 var result = '';
