@@ -9,12 +9,9 @@
 </body>
 <script>
 
-var support_query_command = document.queryCommandSupported;
-var support_indexedDB = window.indexedDB;
-
 var result = '';
 if (navigator.userAgent.indexOf('CPU iPhone OS') != -1) {
-	if (support_query_command && support_indexedDB) {
+	if (navigator.getGamepads) {
 		document.getElementById('result_display_elmt').innerHTML = "WKWebView";
 	} else {
 		document.getElementById('result_display_elmt').innerHTML = "UIWebView";
