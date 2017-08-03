@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano / HTML5 Video WebGL CORS (Cross-Domain) Test</title>
+	<style>
+		body { font-family:Arial; font-size:10pt; }
+		h2 { margin-bottom:4pt; padding-bottom:0pt; }
+		ul { margin-top:0pt; margin-bottom:4pt; padding-left:20pt; }
+		ul li { padding:1pt 0; }
+	</style>
+</head>
+<body>
+	<script>
+
+
+		// load the video
+		var video = document.createElement("video");
+		var videoready = false;
+		video.autoplay = true;
+		video.loop = true;
+		video.oncanplay = function(){ videoready=true; }
+		
+		video.onerror = function()
+		{
+			var err = "unknown error";
+			
+			switch(video.error.code)
+			{
+				case 1: err = "video loading aborted"; break;
+				case 2: err = "network loading error"; break;
+				case 3: err = "video decoding failed / corrupted data or unsupported codec"; break;
+				case 4: err = "video not supported"; break;
+			}; 
+			
+			log("Error: " + err + " (errorcode="+video.error.code+")", "color:red;");
+		};
+		
+		video.crossOrigin = "anonymous";
+		
+		var video_path     = "http://d8d913s460fub.cloudfront.net/videoserver/";
+		var video_filename = "cat-test-video-320x240.mp4";
+		
+		if ( !video.canPlayType("video/mp4").match(/maybe|probably/i) && video.canPlayType("video/webm").match(/maybe|probably/i) )
+		{
+			// try webm if mp4 isn't supported
+			video_filename = "cat-test-video-320x240.webm";
+		}
+		
+		video.src = video_path + video_filename;
+		
+		// try to disable the iPhone video fullscreen mode:
+		video.setAttribute("playsinline", "");
+		video.setAttribute("webkit-playsinline", "");
+
+		document.body.appendChild(video);
+
+	</script>
+
+</body>
+</html>
