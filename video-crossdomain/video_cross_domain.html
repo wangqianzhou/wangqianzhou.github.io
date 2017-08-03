@@ -11,9 +11,16 @@
 	</style>
 </head>
 <body>
+
+		<pre id="log" style="position:absolute;left:510px;top:0;width:400px;height:375px;margin:0;border:1px solid #CCCCCC;overflow:auto;">Log:</pre>
+
 	<script>
 
-
+		function log(msg,style)
+		{
+			document.getElementById("log").innerHTML += "<br><span style='"+(style?style:"")+"'>"+msg+"</span>";
+		}
+		
 		// load the video
 		var video = document.createElement("video");
 		var videoready = false;
