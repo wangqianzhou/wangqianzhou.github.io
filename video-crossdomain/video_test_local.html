@@ -119,16 +119,8 @@
 		
 		video.crossOrigin = "anonymous";
 		
-		var video_path     = "./";
-		var video_filename = "cat-test-video-320x240.mp4";
 		
-		if ( !video.canPlayType("video/mp4").match(/maybe|probably/i) && video.canPlayType("video/webm").match(/maybe|probably/i) )
-		{
-			// try webm if mp4 isn't supported
-			video_filename = "cat-test-video-320x240.webm";
-		}
-		
-		video.src = video_path + video_filename;
+		video.src = "./cat-test-video-320x240.mp4";
 		
 		// try to disable the iPhone video fullscreen mode:
 		video.setAttribute("playsinline", "");
