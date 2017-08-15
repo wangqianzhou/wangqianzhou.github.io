@@ -7,6 +7,8 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
     console.log('Received fetch');
     console.log(event);
+
+    event.respondWith(null);
 });
 
 function endsWith(str, suffix) {
