@@ -8,7 +8,7 @@ self.addEventListener('fetch', function(event) {
     console.log('Received fetch');
     console.log(event);
 
-    if (/\.jpg$/.test(event.request.url)) {
+    if (/\.jpeg$/.test(event.request.url)) {
         console.log('Replace image!');
 
         event.respondWith(
