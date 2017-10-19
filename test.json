@@ -9,7 +9,7 @@
       "expireDate" : "2017-11-18 12:00:00",
       "cmd" : "fetch",
       "content" : "https://image.uc.cn/s/uae/g/1y/broccoli/assets/broccoli.uc.cn/ad/apps/rJqOuPETW/routes/H11t_w4TW/assets_6395e6e0-b3cf-11e7-922f-9797d9a0e8d8.json"
-   }
+   },
 
    "maxRetry":8,
    "retryMinutes":480,
