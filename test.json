@@ -1,0 +1,17 @@
+{
+   "startDate":"2017-10-18 12:00:00",
+   "endDate":"2017-11-18 23:59:59",
+   "netType":38,
+   "messageId":0,
+   "messageName":"sw_activity_mock_push",
+   "scope":"https://broccoli.uc.cn/ad/",
+   "message" : {
+      "expireDate" : "2017-11-18 12:00:00",
+      "cmd" : "fetch",
+      "content" : "https://image.uc.cn/s/uae/g/1y/broccoli/assets/broccoli.uc.cn/ad/apps/rJqOuPETW/routes/H11t_w4TW/assets_6395e6e0-b3cf-11e7-922f-9797d9a0e8d8.json"
+   }
+
+   "maxRetry":8,
+   "retryMinutes":480,
+   "executeSeconds":300
+}
