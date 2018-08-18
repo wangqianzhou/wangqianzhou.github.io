@@ -1,0 +1,38 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <link href='style.css' rel='stylesheet' type='text/css'>
+  <title>ServiceWorker</title>
+</head>
+
+<body>
+  <button  class="action-button shadow animate blue"   onclick="on_replace_click();"   >location.replace   </button>
+  <button  class="action-button shadow animate red"    onclick="on_location_click();" >location.href </button>
+  <button  class="action-button shadow animate green"  onclick="on_push_click();"       >Push       </button>
+  <button  class="action-button shadow animate yellow" onclick="on_other_click();"      >Other      </button>
+</body>
+<script>
+
+  function on_replace_click()
+  {
+    window.location.replace("https://m.baidu.com");
+  }
+
+  function on_location_click()
+  {
+    location.href = "https://m.sina.cn"
+  }
+
+  function on_push_click()
+  {
+
+  }
+
+  function on_other_click()
+  {
+
+  }
+
+</script>
+</html>
