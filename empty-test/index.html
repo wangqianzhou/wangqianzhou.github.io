@@ -14,9 +14,23 @@
 </body>
 <script>
 
+  function sendAjax() {
+    
+    alert('on_click_b');
+    
+    var xhr = new XMLHttpRequest();
+    //设置xhr请求的超时时间
+    //创建一个 post 请求，采用同步
+    xhr.open('GET', 'https://wangqianzhou.github.io/empty-test/style.css', false);
+    //发送数据
+    xhr.send();
+    
+    alert(xhr.responseText);
+  }
+  
   function on_test_a()
   {
-    alert('on_click_a');
+    sendAjax();
   }
 
   function on_test_b()
